@@ -14,7 +14,7 @@
                 <img src="{{ asset('assets') }}/img/photo.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Irsal Fathi Farhat</a>
+                <a href="#" class="d-block">{{ ucfirst(Auth::user()->name) ?? '' }}</a>
             </div>
         </div>
 
@@ -38,9 +38,9 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('admin') }}" class="nav-link">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
                         <i class="fas fa-tachometer-alt nav-icon"></i>
-                        <p>Admin</p>
+                        <p>{{ ucfirst(Auth::user()->name) ?? '' }}</p>
                     </a>
                 </li>
                 <li class="nav-header">Kelola Database</li>
@@ -90,6 +90,17 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-header">Lainnya</li>
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="nav-link"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-door-open nav-icon"></i>
+                        <p>Logout</p>
+                    </a>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </nav>

@@ -25,11 +25,11 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        @include('admin.header')
+        @include('dashboard.header')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('admin.sidebar')
+        @include('dashboard.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -83,7 +83,7 @@
         </div>
         <!-- /.content-wrapper -->
 
-        @include('admin.footer')
+        @include('dashboard.footer')
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

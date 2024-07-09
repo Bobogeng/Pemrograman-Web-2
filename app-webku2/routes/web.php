@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\ParamedikController;
@@ -10,8 +11,18 @@ use App\Http\Controllers\PeriksaController;
 use App\Http\Controllers\UnitKerjaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AdminController::class, 'index'])->name('admin');
-Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
 
 Route::get('/pasien', [PasienController::class, 'show'])->name('pasien');
 Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
